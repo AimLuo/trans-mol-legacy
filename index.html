@@ -119,6 +119,7 @@
         enableWboit: disableWboit ? false : void 0, // use default value if disable-wboit is not set
         preferWebgl1: preferWebgl1,
       }).then((viewer) => {
+        window.viewer = viewer;
         var snapshotId = getParam('snapshot-id', '[^&]+').trim();
         if (snapshotId) viewer.setRemoteSnapshot(snapshotId);
 
@@ -157,14 +158,12 @@
         if (modelArchive) viewer.loadModelArchive(modelArchive);
 
         window.addEventListener('message', (evt) => {
-          console.log('evt', evt);
           try {
             const payload = JSON.parse(evt.data);
             const { type, content } = payload;
-            console.log('type', type);
             switch (type) {
               case 'getMol':
-                console.log('content', content);
+                viewer.clear();
                 viewer.loadStructureFromData(content, 'mol');
                 break;
               default:

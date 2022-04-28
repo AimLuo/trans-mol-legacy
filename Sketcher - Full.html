@@ -14,16 +14,29 @@
       src="./install/uis/ChemDoodleWeb-uis.js"
     ></script>
     <title>ChemDoodle Web Component Sketcher (Full Sketcher)</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      canvas {
+        margin-left: -41px;
+      }
+    </style>
   </head>
   <body>
+    <!-- <div id="app"> -->
     <script>
       ChemDoodle.ELEMENT['H'].jmolColor = 'black';
       ChemDoodle.ELEMENT['S'].jmolColor = '#B9A130';
-
-      var sketcher = new ChemDoodle.SketcherCanvas('sketcher', 268, 300, {
-        useServices: false,
-        oneMolecule: true,
-      });
+      var sketcher = new ChemDoodle.SketcherCanvas(
+        'sketcher',
+        window.innerWidth + 90,
+        window.innerHeight - 100,
+        {
+          useServices: false,
+          oneMolecule: true,
+        }
+      );
       sketcher.styles.atoms_displayTerminalCarbonLabels_2D = true;
       sketcher.styles.atoms_useJMOLColors = true;
       sketcher.styles.bonds_clearOverlaps_2D = true;
@@ -58,5 +71,6 @@
         }
       });
     </script>
+    <!-- </div> -->
   </body>
 </html>
