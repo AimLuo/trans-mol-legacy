@@ -51,13 +51,11 @@
               break;
             case 'getMol':
               const newMol = sketcher.getMolecule();
-              const molStr = ChemDoodle.writeMOLV3(newMol);
-              console.log(molStr);
-              console.log(ChemDoodle.writeMOL(newMol));
+              // const molStr = ChemDoodle.writeMOLV3(newMol);
               window.parent.postMessage(
                 JSON.stringify({
                   type: 'getMol',
-                  content: molStr,
+                  content: ChemDoodle.writeMOL(newMol),
                 })
               );
               break;
