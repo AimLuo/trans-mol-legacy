@@ -18,9 +18,6 @@
       body {
         margin: 0;
       }
-      canvas {
-        margin-left: -41px;
-      }
     </style>
   </head>
   <body>
@@ -30,16 +27,16 @@
       ChemDoodle.ELEMENT['S'].jmolColor = '#B9A130';
       var sketcher = new ChemDoodle.SketcherCanvas(
         'sketcher',
-        window.innerWidth + 90,
-        window.innerHeight - 100,
+        284,
+        window.innerHeight - 120,
         {
           useServices: false,
           oneMolecule: true,
         }
       );
-      sketcher.styles.atoms_displayTerminalCarbonLabels_2D = true;
-      sketcher.styles.atoms_useJMOLColors = true;
-      sketcher.styles.bonds_clearOverlaps_2D = true;
+      // sketcher.styles.atoms_displayTerminalCarbonLabels_2D = true;
+      // sketcher.styles.atoms_useJMOLColors = true;
+      // sketcher.styles.bonds_clearOverlaps_2D = true;
       sketcher.repaint();
 
       window.addEventListener('message', function (evt) {
@@ -54,8 +51,9 @@
               break;
             case 'getMol':
               const newMol = sketcher.getMolecule();
-              const molStr = ChemDoodle.writeMOL(newMol);
-
+              const molStr = ChemDoodle.writeMOLV3(newMol);
+              console.log(molStr);
+              console.log(ChemDoodle.writeMOL(newMol));
               window.parent.postMessage(
                 JSON.stringify({
                   type: 'getMol',

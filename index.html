@@ -7,7 +7,7 @@
       content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
-    <title>Mol* Viewer</title>
+    <title>TransMol</title>
     <style>
       * {
         margin: 0;
@@ -156,7 +156,7 @@
 
         var modelArchive = getParam('model-archive', '[^&]+').trim();
         if (modelArchive) viewer.loadModelArchive(modelArchive);
-
+        console.log(viewer);
         window.addEventListener('message', (evt) => {
           try {
             const payload = JSON.parse(evt.data);
